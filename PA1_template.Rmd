@@ -110,3 +110,20 @@ As you can see the values differ from the first histogram for the first five tho
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
+####**Creating a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.**
+```{r}
+library(plyr)
+Sys.setlocale("LC_TIME", "C") # setting LOCAL TIME -> English
+dataFilled<-mutate(dataFilled, dayType = ifelse(weekdays(date) %in% c("Saturday","Sunday","sábado","domingo"),"weekend","weekday"))
+```
+####**Making a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis)**
+```{r fig.height=4}
+DFSummary<-aggregate(dataFilled$steps, by=list(dataFilled$dayType,dataFilled$interval),FUN=mean)
+names(DFSummary)<-c("DayType","Interval","Steps")
+g<-ggplot(DFSummary,aes(Interval,Steps))
+g+geom_line(color="#017292") +facet_wrap(~DayType, nrow=2, ncol=1)+labs(x="Interval")+labs(y="Number of steps")+labs(title="Steps by day type")
+```
+```{r echo=FALSE, results='hide'}
+print("\n") 
+```  
+As you can see, there are some differences between the patterns of weekday and weekend day
