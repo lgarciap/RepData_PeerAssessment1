@@ -1,4 +1,11 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: 'Reproducible Research: Peer Assessment 1'
+output:
+  word_document: default
+  pdf_document: default
+  html_document:
+    keep_md: yes
+---
 
 <!-- Set the working directory first. Make sure it is in the same folder of the .Rmd script-->
 ## Loading and preprocessing the data
@@ -34,7 +41,7 @@ hist<-ggplot(steps_per_day,aes(x=steps_per_day$stepsTotal))
 hist+geom_histogram(breaks=seq(0,25000,5000), aes(fill=..count..))+xlab("Total Steps")+ggtitle("Total Steps per day")
 ```
 
-![](PA1_template_files/figure-html/histPlot-1.png) 
+![plot of chunk histPlot](figure/histPlot-1.png) 
 
 ####**Mean and median total number of steps taken per day**
 
@@ -120,7 +127,7 @@ plot(steps_per_int_mean, type="l",col="blue")
 title("Steps Average per interval")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 
 ####**5-minute interval containing the maximum number of steps**
@@ -181,7 +188,7 @@ hist<-hist +scale_fill_gradient("Count", low = "#093B0D", high = "#98D69D")
 hist
 ```
 
-![](PA1_template_files/figure-html/histPlot1-1.png) 
+![plot of chunk histPlot1](figure/histPlot1-1.png) 
 
 As you can see the values differ from the first histogram for the first five thousand steps. 
 
@@ -199,7 +206,7 @@ Sys.setlocale("LC_TIME", "C") # setting LOCAL TIME -> English
 ```
 
 ```r
-dataFilled<-mutate(dataFilled, dayType = ifelse(weekdays(date) %in% c("Saturday","Sunday","sÃ¡bado","domingo"),"weekend","weekday"))
+dataFilled<-mutate(dataFilled, dayType = ifelse(weekdays(date) %in% c("Saturday","Sunday","sábado","domingo"),"weekend","weekday"))
 ```
 ####**Making a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis)**
 
@@ -210,6 +217,9 @@ g<-ggplot(DFSummary,aes(Interval,Steps))
 g+geom_line(color="#017292") +facet_wrap(~DayType, nrow=2, ncol=1)+labs(x="Interval")+labs(y="Number of steps")+labs(title="Steps by day type")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
 
 As you can see, there are some differences between the patterns of weekday and weekend day
+
+
+
