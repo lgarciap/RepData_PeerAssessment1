@@ -1,8 +1,10 @@
 ---
-title: "Reproducible Research: Peer Assessment 1"
-output: 
+title: 'Reproducible Research: Peer Assessment 1'
+output:
+  word_document: default
+  pdf_document: default
   html_document:
-    keep_md: true
+    keep_md: yes
 ---
 
 <!-- Set the working directory first. Make sure it is in the same folder of the .Rmd script-->
@@ -127,3 +129,4 @@ g+geom_line(color="#017292") +facet_wrap(~DayType, nrow=2, ncol=1)+labs(x="Inter
 print("\n") 
 ```  
 As you can see, there are some differences between the patterns of weekday and weekend day
+
